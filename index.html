@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スロット台データ</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:12px;
+    background:#f4f4f8;
+    font-family:sans-serif;
+    color:#222;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.header{
+    background:linear-gradient(90deg,#5f2eea,#8f3fff);
+    color:white;
+    padding:16px;
+    border-radius:18px;
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:16px;
+    text-align:center;
+}
+
+/* モード */
+
+.mode-tabs{
+    display:flex;
+    gap:8px;
+    margin-bottom:16px;
+}
+
+.mode-btn{
+    flex:1;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background:#ddd;
+    font-size:16px;
+    font-weight:bold;
+    color:#222;
+    cursor:pointer;
+}
+
+.mode-btn.active{
+    background:#6b30ff;
+    color:white;
+}
+
+/* カード */
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:14px;
+    margin-bottom:16px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+
+.title{
+    font-size:22px;
+    font-weight:bold;
+    color:#6b30ff;
+    margin-bottom:14px;
+}
+
+/* モード画面 */
+
+.mode-screen{
+    display:none;
+}
+
+.mode-screen.active{
+    display:block;
+}
+
+/* REG BIG */
+
+.bonus-wrap{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.bonus-card{
+    flex:1;
+    min-width:0;
+    width:100%;
+    border:2px solid #eee;
+    border-radius:16px;
+    padding:12px;
+}
+
+/* BONUS HEADER */
+
+.bonus-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+}
+
+.bonus-name{
+    font-size:22px;
+    font-weight:bold;
+}
+
+/* カウンター */
+
+.counter{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.small-btn{
+    width:36px;
+    height:36px;
+    border:none;
+    border-radius:10px;
+    background:#6b30ff;
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+    padding:0;
+    margin:0;
+    flex-shrink:0;
+    cursor:pointer;
+}
+
+.count-input{
+    width:70px;
+    height:40px;
+    padding:4px;
+    font-size:22px;
+    text-align:center;
+    border:1px solid #ccc;
+    border-radius:10px;
+}
+
+.section-title{
+    font-size:15px;
+    font-weight:bold;
+    margin-top:14px;
+    margin-bottom:8px;
+}
+
+/* グリッド */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+}
+
+.color-box{
+    background:#f7f7f7;
+    border-radius:12px;
+    padding:8px;
+    text-align:center;
+}
+
+.color-label{
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:4px;
+}
+
+.color-input{
+    width:100%;
+    max-width:60px;
+    padding:6px;
+    font-size:18px;
+    text-align:center;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+/* 色 */
+
+.red{color:red;}
+.green{color:green;}
+.yellow{color:#b79b00;}
+.blue{color:blue;}
+.purple{color:purple;}
+
+.rainbow{
+    background:linear-gradient(90deg,red,orange,yellow,green,blue,purple);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* BOX */
+
+.flex{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.box{
+    flex:1;
+    min-width:140px;
+    background:white;
+    border-radius:16px;
+    padding:14px;
+    text-align:center;
+    border:3px solid #eee;
+}
+
+.box-title{
+    font-size:20px;
+    margin-bottom:10px;
+    font-weight:bold;
+}
+
+.box-value{
+    width:90px;
+    height:42px;
+    font-size:24px;
+    padding:4px;
+    text-align:center;
+    border:1px solid #ccc;
+    border-radius:10px;
+}
+
+/* 合算 */
+
+.total{
+    background:#faf7ff;
+    border-radius:18px;
+    padding:24px;
+    text-align:center;
+    font-size:48px;
+    font-weight:bold;
+    color:#6b30ff;
+}
+
+/* ボタン */
+
+.main-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    margin-top:12px;
+    cursor:pointer;
+}
+
+.calc-btn{
+    background:#6b30ff;
+}
+
+.clear-btn{
+    background:#ff4d6d;
+}
+
+button:active{
+    transform:scale(0.98);
+}
+
+/* スマホ */
+
+@media(max-width:900px){
+
+    body{
+        padding:8px;
+    }
+
+    .header{
+        font-size:20px;
+        padding:14px;
+    }
+
+    .bonus-wrap{
+        flex-direction:column;
+    }
+
+    .bonus-card{
+        width:100%;
+    }
+
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .bonus-name{
+        font-size:18px;
+    }
+
+    .count-input{
+        width:56px;
+        font-size:18px;
+    }
+
+    .small-btn{
+        width:32px;
+        height:32px;
+        font-size:18px;
+    }
+
+    .color-input{
+        max-width:50px;
+        font-size:16px;
+    }
+
+    .box{
+        min-width:100%;
+    }
+
+    .box-value{
+        width:70px;
+        font-size:20px;
+    }
+
+    .total{
+        font-size:34px;
+        padding:18px;
+    }
+
+    .main-btn{
+        font-size:18px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+📊 台データ詳細
+</div>
+
+<!-- モード -->
+
+<div class="mode-tabs">
+
+<button class="mode-btn active" onclick="changeMode('A',event)">A</button>
+<button class="mode-btn" onclick="changeMode('B',event)">B</button>
+<button class="mode-btn" onclick="changeMode('C',event)">C</button>
+<button class="mode-btn" onclick="changeMode('D',event)">D</button>
+<button class="mode-btn" onclick="changeMode('E',event)">E</button>
+
+</div>
+
+<!-- モード生成先 -->
+<div id="mode-container"></div>
+
+</div>
+
+<script>
+
+const modes = ["A","B","C","D","E"];
+
+const modeData = {};
+
+modes.forEach(mode => {
+
+    modeData[mode] = {
+        big:0,
+        reg:0,
+        suikaBig:0,
+        suikaReg:0,
+        game:0
+    };
+
+});
+
+let currentMode = "A";
+
+/* モードHTML生成 */
+
+function createModeHTML(mode){
+
+return `
+
+<div id="mode-${mode}" class="mode-screen ${mode === 'A' ? 'active' : ''}">
+
+<div class="card">
+
+<div class="title">
+🎰 ボーナス詳細 (${mode})
+</div>
+
+<div class="bonus-wrap">
+
+<!-- REG -->
+
+<div class="bonus-card">
+
+<div class="bonus-header">
+
+<div class="bonus-name">
+REG
+</div>
+
+<div class="counter">
+
+<button
+class="small-btn"
+onclick="changeValue('${mode}','reg',-1)"
+>
+-
+</button>
+
+<input
+id="${mode}-reg"
+class="count-input"
+type="number"
+value="0"
+oninput="syncInput('${mode}','reg')"
+>
+
+<button
+class="small-btn"
+onclick="changeValue('${mode}','reg',1)"
+>
++
+</button>
+
+</div>
+
+</div>
+
+<div class="section-title">
+トップランプ
+</div>
+
+<div class="grid">
+
+${createLampInputs()}
+
+</div>
+
+<div class="section-title">
+サイドランプ（ビタ）
+</div>
+
+<div class="grid">
+
+${createSideLampInputs()}
+
+</div>
+
+</div>
+
+<!-- BIG -->
+
+<div class="bonus-card">
+
+<div class="bonus-header">
+
+<div class="bonus-name">
+BIG
+</div>
+
+<div class="counter">
+
+<button
+class="small-btn"
+onclick="changeValue('${mode}','big',-1)"
+>
+-
+</button>
+
+<input
+id="${mode}-big"
+class="count-input"
+type="number"
+value="0"
+oninput="syncInput('${mode}','big')"
+>
+
+<button
+class="small-btn"
+onclick="changeValue('${mode}','big',1)"
+>
++
+</button>
+
+</div>
+
+</div>
+
+<div class="section-title">
+トップランプ
+</div>
+
+<div class="grid">
+
+${createLampInputs()}
+
+</div>
+
+<div class="section-title">
+サイドランプ（ビタ）
+</div>
+
+<div class="grid">
+
+${createSideLampInputs()}
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- スイカ -->
+
+<div class="card">
+
+<div class="title">
+🍉 スイカ
+</div>
+
+<div class="flex">
+
+<div class="box">
+
+<div class="box-title">
+BIG
+</div>
+
+<div class="counter">
+
+<button
+class="small-btn"
+onclick="changeValue('${mode}','suikaBig',-1)"
+>
+-
+</button>
+
+<input
+id="${mode}-suikaBig"
+class="box-value"
+type="number"
+value="0"
+oninput="syncInput('${mode}','suikaBig')"
+>
+
+<button
+class="small-btn"
+onclick="changeValue('${mode}','suikaBig',1)"
+>
++
+</button>
+
+</div>
+
+</div>
+
+<div class="box">
+
+<div class="box-title">
+REG
+</div>
+
+<div class="counter">
+
+<button
+class="small-btn"
+onclick="changeValue('${mode}','suikaReg',-1)"
+>
+-
+</button>
+
+<input
+id="${mode}-suikaReg"
+class="box-value"
+type="number"
+value="0"
+oninput="syncInput('${mode}','suikaReg')"
+>
+
+<button
+class="small-btn"
+onclick="changeValue('${mode}','suikaReg',1)"
+>
++
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- 回転数 -->
+
+<div class="card">
+
+<div class="title">
+🎮 回転数
+</div>
+
+<div class="flex">
+
+<div class="box">
+
+<div class="box-title">
+総回転数
+</div>
+
+<input
+id="${mode}-game"
+class="box-value"
+type="number"
+value="0"
+oninput="syncInput('${mode}','game')"
+>
+
+</div>
+
+<div class="box">
+
+<div class="box-title">
+ボーナス合計
+</div>
+
+<div
+id="${mode}-bonusTotal"
+class="box-value"
+style="margin:auto;display:flex;align-items:center;justify-content:center;"
+>
+0
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- 合算 -->
+
+<div class="card">
+
+<div class="title">
+🧮 合算
+</div>
+
+<div
+class="total"
+id="${mode}-gassan"
+>
+-
+</div>
+
+<button class="main-btn calc-btn" onclick="calc('${mode}')">
+合算計算
+</button>
+
+<button class="main-btn clear-btn" onclick="clearData('${mode}')">
+🗑 全データクリア
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+/* ランプ */
+
+function createLampInputs(){
+
+return `
+<div class="color-box">
+<div class="color-label rainbow">虹</div>
+<input class="color-input" type="number" value="0">
+</div>
+
+<div class="color-box">
+<div class="color-label purple">紫</div>
+<input class="color-input" type="number" value="0">
+</div>
+
+<div class="color-box">
+<div class="color-label red">赤</div>
+<input class="color-input" type="number" value="0">
+</div>
+
+<div class="color-box">
+<div class="color-label green">緑</div>
+<input class="color-input" type="number" value="0">
+</div>
+
+<div class="color-box">
+<div class="color-label yellow">黄</div>
+<input class="color-input" type="number" value="0">
+</div>
+
+<div class="color-box">
+<div class="color-label blue">青</div>
+<input class="color-input" type="number" value="0">
+</div>
+
+<div class="color-box">
+<div class="color-label">白</div>
+<input class="color-input" type="number" value="0">
+</div>
+`;
+
+}
+
+function createSideLampInputs(){
+
+return `
+<div class="color-box">
+<div class="color-label red">赤</div>
+<input class="color-input" type="number" value="0">
+</div>
+
+<div class="color-box">
+<div class="color-label green">緑</div>
+<input class="color-input" type="number" value="0">
+</div>
+
+<div class="color-box">
+<div class="color-label yellow">黄</div>
+<input class="color-input" type="number" value="0">
+</div>
+
+<div class="color-box">
+<div class="color-label blue">青</div>
+<input class="color-input" type="number" value="0">
+</div>
+`;
+
+}
+
+/* 画面生成 */
+
+const container = document.getElementById("mode-container");
+
+modes.forEach(mode => {
+    container.innerHTML += createModeHTML(mode);
+});
+
+/* 合算 */
+
+function calc(mode){
+
+    let data = modeData[mode];
+
+    let totalBonus = data.big + data.reg;
+
+    document.getElementById(`${mode}-bonusTotal`).innerText =
+    totalBonus;
+
+    if(totalBonus <= 0){
+
+        document.getElementById(`${mode}-gassan`).innerText =
+        "-";
+
+        return;
+    }
+
+    let result =
+    Math.floor(data.game / totalBonus);
+
+    document.getElementById(`${mode}-gassan`).innerText =
+    "1/" + result;
+
+}
+
+/* 入力同期 */
+
+function syncInput(mode,key){
+
+    let value =
+    Number(document.getElementById(`${mode}-${key}`).value);
+
+    modeData[mode][key] = value;
+
+    calc(mode);
+
+}
+
+/* 値変更 */
+
+function changeValue(mode,key,amount){
+
+    let el =
+    document.getElementById(`${mode}-${key}`);
+
+    let value =
+    Number(el.value);
+
+    value += amount;
+
+    if(value < 0){
+        value = 0;
+    }
+
+    el.value = value;
+
+    modeData[mode][key] = value;
+
+    calc(mode);
+
+}
+
+/* クリア */
+
+function clearData(mode){
+
+    modeData[mode] = {
+        big:0,
+        reg:0,
+        suikaBig:0,
+        suikaReg:0,
+        game:0
+    };
+
+    document
+    .querySelectorAll(`#mode-${mode} input`)
+    .forEach(input => {
+        input.value = 0;
+    });
+
+    calc(mode);
+
+}
+
+/* モード切替 */
+
+function changeMode(mode,event){
+
+    currentMode = mode;
+
+    document
+    .querySelectorAll(".mode-btn")
+    .forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    event.target.classList.add("active");
+
+    document
+    .querySelectorAll(".mode-screen")
+    .forEach(screen => {
+        screen.classList.remove("active");
+    });
+
+    document
+    .getElementById("mode-" + mode)
+    .classList.add("active");
+
+}
+
+/* 初期計算 */
+
+modes.forEach(mode => {
+    calc(mode);
+});
+
+</script>
+
+</body>
+</html>
