@@ -13,14 +13,14 @@
 
 body{
     margin:0;
-    padding:12px;
+    padding:10px;
     background:#f4f4f8;
     font-family:sans-serif;
     color:#222;
 }
 
 .container{
-    max-width:1200px;
+    max-width:1400px;
     margin:auto;
 }
 
@@ -65,7 +65,7 @@ body{
 .card{
     background:white;
     border-radius:18px;
-    padding:14px;
+    padding:12px;
     margin-bottom:16px;
     box-shadow:0 2px 8px rgba(0,0,0,0.08);
 }
@@ -91,17 +91,17 @@ body{
 
 .bonus-wrap{
     display:flex;
-    gap:14px;
-    flex-wrap:wrap;
+    gap:10px;
+    flex-wrap:nowrap;
+    overflow-x:auto;
 }
 
 .bonus-card{
     flex:1;
     min-width:0;
-    width:100%;
     border:2px solid #eee;
     border-radius:16px;
-    padding:12px;
+    padding:10px;
 }
 
 /* BONUS HEADER */
@@ -110,12 +110,12 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    gap:10px;
+    gap:8px;
     margin-bottom:12px;
 }
 
 .bonus-name{
-    font-size:22px;
+    font-size:20px;
     font-weight:bold;
 }
 
@@ -124,17 +124,17 @@ body{
 .counter{
     display:flex;
     align-items:center;
-    gap:6px;
+    gap:4px;
 }
 
 .small-btn{
-    width:36px;
-    height:36px;
+    width:30px;
+    height:30px;
     border:none;
-    border-radius:10px;
+    border-radius:8px;
     background:#6b30ff;
     color:white;
-    font-size:22px;
+    font-size:18px;
     font-weight:bold;
     padding:0;
     margin:0;
@@ -143,19 +143,19 @@ body{
 }
 
 .count-input{
-    width:70px;
-    height:40px;
-    padding:4px;
-    font-size:22px;
+    width:54px;
+    height:34px;
+    padding:2px;
+    font-size:18px;
     text-align:center;
     border:1px solid #ccc;
-    border-radius:10px;
+    border-radius:8px;
 }
 
 .section-title{
-    font-size:15px;
+    font-size:14px;
     font-weight:bold;
-    margin-top:14px;
+    margin-top:12px;
     margin-bottom:8px;
 }
 
@@ -163,41 +163,40 @@ body{
 
 .grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:8px;
+    grid-template-columns:repeat(2,1fr);
+    gap:6px;
 }
 
 .color-box{
     background:#f7f7f7;
-    border-radius:12px;
-    padding:8px;
+    border-radius:10px;
+    padding:6px;
     text-align:center;
 }
 
 .color-label{
-    font-size:14px;
+    font-size:12px;
     font-weight:bold;
     margin-bottom:4px;
 }
 
 .color-input{
-    width:50px;
-    padding:6px;
-    font-size:18px;
+    width:38px;
+    padding:4px;
+    font-size:14px;
     text-align:center;
     border:1px solid #ccc;
-    border-radius:8px;
+    border-radius:6px;
 }
 
 .color-box .counter{
     justify-content:center;
-    margin-top:4px;
 }
 
 .color-box .small-btn{
-    width:28px;
-    height:28px;
-    font-size:18px;
+    width:24px;
+    height:24px;
+    font-size:14px;
 }
 
 /* 色 */
@@ -218,7 +217,7 @@ body{
 
 .flex{
     display:flex;
-    gap:12px;
+    gap:10px;
     flex-wrap:wrap;
 }
 
@@ -227,25 +226,25 @@ body{
     min-width:140px;
     background:white;
     border-radius:16px;
-    padding:14px;
+    padding:12px;
     text-align:center;
     border:3px solid #eee;
 }
 
 .box-title{
-    font-size:20px;
+    font-size:18px;
     margin-bottom:10px;
     font-weight:bold;
 }
 
 .box-value{
-    width:90px;
-    height:42px;
-    font-size:24px;
+    width:80px;
+    height:38px;
+    font-size:20px;
     padding:4px;
     text-align:center;
     border:1px solid #ccc;
-    border-radius:10px;
+    border-radius:8px;
 }
 
 /* 合算 */
@@ -253,9 +252,9 @@ body{
 .total{
     background:#faf7ff;
     border-radius:18px;
-    padding:24px;
+    padding:20px;
     text-align:center;
-    font-size:48px;
+    font-size:40px;
     font-weight:bold;
     color:#6b30ff;
 }
@@ -264,13 +263,13 @@ body{
 
 .main-btn{
     width:100%;
-    padding:14px;
+    padding:12px;
     border:none;
     border-radius:14px;
     color:white;
-    font-size:20px;
+    font-size:18px;
     font-weight:bold;
-    margin-top:12px;
+    margin-top:10px;
     cursor:pointer;
 }
 
@@ -291,44 +290,66 @@ button:active{
 @media(max-width:900px){
 
     body{
-        padding:8px;
+        padding:6px;
     }
 
     .header{
-        font-size:20px;
-        padding:14px;
+        font-size:18px;
+        padding:12px;
     }
 
     .bonus-wrap{
-        flex-direction:column;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:8px;
+        overflow-x:hidden;
     }
 
     .bonus-card{
         width:100%;
-    }
-
-    .grid{
-        grid-template-columns:repeat(2,1fr);
+        min-width:0;
+        padding:8px;
     }
 
     .bonus-name{
-        font-size:18px;
+        font-size:16px;
     }
 
     .count-input{
-        width:56px;
-        font-size:18px;
+        width:44px;
+        font-size:15px;
+        height:30px;
     }
 
     .small-btn{
-        width:32px;
-        height:32px;
-        font-size:18px;
+        width:26px;
+        height:26px;
+        font-size:14px;
+    }
+
+    .grid{
+        grid-template-columns:1fr 1fr;
+        gap:4px;
+    }
+
+    .color-box{
+        padding:4px;
+    }
+
+    .color-label{
+        font-size:11px;
     }
 
     .color-input{
-        width:46px;
-        font-size:16px;
+        width:32px;
+        font-size:12px;
+        padding:2px;
+    }
+
+    .color-box .small-btn{
+        width:20px;
+        height:20px;
+        font-size:12px;
     }
 
     .box{
@@ -336,17 +357,17 @@ button:active{
     }
 
     .box-value{
-        width:70px;
-        font-size:20px;
+        width:64px;
+        font-size:18px;
     }
 
     .total{
-        font-size:34px;
-        padding:18px;
+        font-size:30px;
+        padding:16px;
     }
 
     .main-btn{
-        font-size:18px;
+        font-size:16px;
     }
 
 }
@@ -362,8 +383,6 @@ button:active{
 📊 台データ詳細
 </div>
 
-<!-- モード -->
-
 <div class="mode-tabs">
 
 <button class="mode-btn active" onclick="changeMode('A',event)">A</button>
@@ -374,7 +393,6 @@ button:active{
 
 </div>
 
-<!-- モード生成先 -->
 <div id="mode-container"></div>
 
 </div>
@@ -397,9 +415,70 @@ modes.forEach(mode => {
 
 });
 
-let currentMode = "A";
+function createColorCounter(label,colorClass){
 
-/* モードHTML生成 */
+return `
+<div class="color-box">
+
+<div class="color-label ${colorClass}">
+${label}
+</div>
+
+<div class="counter">
+
+<button
+class="small-btn"
+type="button"
+onclick="changeMiniValue(this,-1)"
+>
+-
+</button>
+
+<input
+class="color-input"
+type="number"
+value="0"
+>
+
+<button
+class="small-btn"
+type="button"
+onclick="changeMiniValue(this,1)"
+>
++
+</button>
+
+</div>
+
+</div>
+`;
+
+}
+
+function createLampInputs(){
+
+return `
+${createColorCounter("虹","rainbow")}
+${createColorCounter("紫","purple")}
+${createColorCounter("赤","red")}
+${createColorCounter("緑","green")}
+${createColorCounter("黄","yellow")}
+${createColorCounter("青","blue")}
+${createColorCounter("白","")}
+`;
+
+}
+
+function createSideLampInputs(){
+
+return `
+${createColorCounter("赤","red")}
+${createColorCounter("緑","green")}
+${createColorCounter("黄","yellow")}
+${createColorCounter("青","blue")}
+`;
+
+}
 
 function createModeHTML(mode){
 
@@ -414,8 +493,6 @@ return `
 </div>
 
 <div class="bonus-wrap">
-
-<!-- REG -->
 
 <div class="bonus-card">
 
@@ -458,9 +535,7 @@ onclick="changeValue('${mode}','reg',1)"
 </div>
 
 <div class="grid">
-
 ${createLampInputs()}
-
 </div>
 
 <div class="section-title">
@@ -468,14 +543,10 @@ ${createLampInputs()}
 </div>
 
 <div class="grid">
-
 ${createSideLampInputs()}
-
 </div>
 
 </div>
-
-<!-- BIG -->
 
 <div class="bonus-card">
 
@@ -518,9 +589,7 @@ onclick="changeValue('${mode}','big',1)"
 </div>
 
 <div class="grid">
-
 ${createLampInputs()}
-
 </div>
 
 <div class="section-title">
@@ -528,9 +597,7 @@ ${createLampInputs()}
 </div>
 
 <div class="grid">
-
 ${createSideLampInputs()}
-
 </div>
 
 </div>
@@ -538,8 +605,6 @@ ${createSideLampInputs()}
 </div>
 
 </div>
-
-<!-- スイカ -->
 
 <div class="card">
 
@@ -621,8 +686,6 @@ onclick="changeValue('${mode}','suikaReg',1)"
 
 </div>
 
-<!-- 回転数 -->
-
 <div class="card">
 
 <div class="title">
@@ -667,8 +730,6 @@ style="margin:auto;display:flex;align-items:center;justify-content:center;"
 
 </div>
 
-<!-- 合算 -->
-
 <div class="card">
 
 <div class="title">
@@ -698,82 +759,11 @@ id="${mode}-gassan"
 
 }
 
-/* ランプ */
-
-function createLampInputs(){
-
-return `
-${createColorCounter("虹","rainbow")}
-${createColorCounter("紫","purple")}
-${createColorCounter("赤","red")}
-${createColorCounter("緑","green")}
-${createColorCounter("黄","yellow")}
-${createColorCounter("青","blue")}
-${createColorCounter("白","")}
-`;
-
-}
-
-function createSideLampInputs(){
-
-return `
-${createColorCounter("赤","red")}
-${createColorCounter("緑","green")}
-${createColorCounter("黄","yellow")}
-${createColorCounter("青","blue")}
-`;
-
-}
-
-function createColorCounter(label,colorClass){
-
-return `
-<div class="color-box">
-
-<div class="color-label ${colorClass}">
-${label}
-</div>
-
-<div class="counter">
-
-<button
-class="small-btn"
-type="button"
-onclick="changeMiniValue(this,-1)"
->
--
-</button>
-
-<input
-class="color-input"
-type="number"
-value="0"
->
-
-<button
-class="small-btn"
-type="button"
-onclick="changeMiniValue(this,1)"
->
-+
-</button>
-
-</div>
-
-</div>
-`;
-
-}
-
-/* 画面生成 */
-
 const container = document.getElementById("mode-container");
 
 modes.forEach(mode => {
     container.innerHTML += createModeHTML(mode);
 });
-
-/* 合算 */
 
 function calc(mode){
 
@@ -800,8 +790,6 @@ function calc(mode){
 
 }
 
-/* 入力同期 */
-
 function syncInput(mode,key){
 
     let value =
@@ -812,8 +800,6 @@ function syncInput(mode,key){
     calc(mode);
 
 }
-
-/* 値変更 */
 
 function changeValue(mode,key,amount){
 
@@ -837,8 +823,6 @@ function changeValue(mode,key,amount){
 
 }
 
-/* ランプ用 */
-
 function changeMiniValue(button,amount){
 
     let wrapper =
@@ -860,8 +844,6 @@ function changeMiniValue(button,amount){
 
 }
 
-/* クリア */
-
 function clearData(mode){
 
     modeData[mode] = {
@@ -882,11 +864,7 @@ function clearData(mode){
 
 }
 
-/* モード切替 */
-
 function changeMode(mode,event){
-
-    currentMode = mode;
 
     document
     .querySelectorAll(".mode-btn")
@@ -907,8 +885,6 @@ function changeMode(mode,event){
     .classList.add("active");
 
 }
-
-/* 初期計算 */
 
 modes.forEach(mode => {
     calc(mode);
